@@ -3,6 +3,28 @@ description: A new Flutter project.
 publish_to: "none"
 version: 1.0.0+1
 
+script_runner:
+  scripts:
+    - gen:watch: flutter pub run build_runner watch --delete-conflicting-outputs
+    - gen:build: flutter pub run build_runner build --delete-conflicting-outputs
+    - dev: flutter run -d chrome
+    - dev:web: flutter run -d chrome
+    - dev:android: flutter run -d android
+    - dev:ios: flutter run -d ios
+    - dev:macos: flutter run -d macos
+    - dev:linux: flutter run -d linux
+    - dev:windows: flutter run -d windows
+    - build:web: flutter build web --release
+    - build:android: flutter build apk --split-per-abi
+    - build:ios: flutter build ios --release --no-codesign
+    - build:macos: flutter build macos --release
+    - build:linux: flutter build linux --release
+    - build:windows: flutter build windows --release
+    - build:all: scr build:web && scr build:android && scr build:ios && scr build:macos && scr build:linux && scr build:windows
+    - fix: dart fix --apply
+    - lint: dart analyze --fatal-infos --fatal-warnings .
+    - test: flutter test --coverage
+
 environment:
   sdk: ">=2.19.2 <3.0.0"
 
@@ -35,6 +57,7 @@ dev_dependencies:
   hive_generator: ^2.0.0
   build_runner: ^2.3.3
   flutter_lints: ^2.0.0
+  chopper_generator: ^6.0.0
 
 flutter:
   uses-material-design: true
