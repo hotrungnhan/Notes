@@ -1,6 +1,4 @@
-# notes
-
-A new Flutter project.
+# FLutter Template
 
 ## Getting Started
 
