@@ -1,32 +1,64 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:go_router/go_router.dart';
+import 'package:notes/viewmodels/auth.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          const Text(
-            'Login',
+    var authBloc = context.read<AuthBloc>();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        SizedBox(
+            child: Column(children: [
+          PlatformText("Login"),
+          PlatformTextFormField(
+            material: (context, platform) => MaterialTextFormFieldData(
+              decoration: const InputDecoration(
+                border: UnderlineInputBorder(),
+                labelText: 'Username',
+              ),
+            ),
+            cupertino: (context, platform) =>
+                CupertinoTextFormFieldData(placeholder: "Username"),
           ),
-          TextButton(
-            onPressed: () => {context.go("/")},
-            child: const Text("Home"),
+          PlatformTextFormField(
+            keyboardType: TextInputType.visiblePassword,
+            obscureText: true,
+            material: (context, platform) => MaterialTextFormFieldData(
+              decoration: const InputDecoration(
+                border: UnderlineInputBorder(),
+                labelText: 'Password',
+              ),
+            ),
+            cupertino: (context, platform) =>
+                CupertinoTextFormFieldData(placeholder: "Password"),
           ),
-          TextButton(
-            onPressed: () => {context.go("/forgot-password")},
-            child: const Text("Forget Password !"),
+          PlatformTextButton(
+            padding: const EdgeInsets.only(top: 10),
+            onPressed: () =>
+                authBloc.add(const LoginEvent("email", "password")),
+            child: PlatformText("Login"),
           ),
-          TextButton(
-            onPressed: () => {context.go("/signup")},
-            child: const Text("Sign Up"),
-          )
-        ],
-      ),
+        ])),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            PlatformTextButton(
+              onPressed: () => {context.go("/forgot-password")},
+              child: PlatformText("Forget Password !"),
+            ),
+            PlatformTextButton(
+              onPressed: () => {context.go("/signup")},
+              child: PlatformText("Sign Up"),
+            )
+          ],
+        ),
+      ],
     );
   }
 }

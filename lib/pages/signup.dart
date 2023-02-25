@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:go_router/go_router.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -10,12 +11,12 @@ class SignupScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const Text(
+          PlatformText(
             'Signup',
           ),
-          TextButton(
+          PlatformTextButton(
             onPressed: () => {context.go("/login")},
-            child: const Text("login"),
+            child: PlatformText("login"),
           )
         ],
       ),

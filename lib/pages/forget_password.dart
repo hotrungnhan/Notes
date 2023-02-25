@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 class ForgotPassword extends StatelessWidget {
   const ForgotPassword({super.key});
@@ -15,7 +16,7 @@ class ForgotPassword extends StatelessWidget {
           ),
           TextButton(
             onPressed: () => {context.go("/login")},
-            child: const Text("Login"),
+            child: PlatformText("Login"),
           )
         ],
       ),

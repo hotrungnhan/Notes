@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,16 +12,18 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const Text(
+          PlatformText(
             'Hello from template',
           ),
-          Text(
+          PlatformText(
             'google',
-            style: Theme.of(context).textTheme.headlineMedium,
+            style: platformThemeData(context,
+                material: (t) => t.textTheme.headlineMedium,
+                cupertino: (t) => t.textTheme.navTitleTextStyle),
           ),
-          TextButton(
+          PlatformTextButton(
             onPressed: () => {context.go("/item/1")},
-            child: const Text("google.com"),
+            child: PlatformText("google.com"),
           )
         ],
       ),
