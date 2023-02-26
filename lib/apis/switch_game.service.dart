@@ -6,6 +6,7 @@ import 'package:chopper/chopper.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:chopper_built_value/chopper_built_value.dart';
 import '../models/switch_game.dart';
+import '../utils/http/interceptor.dart';
 
 part "switch_game.service.chopper.dart";
 part 'switch_game.service.g.dart';
@@ -22,12 +23,13 @@ abstract class SwitchGameService extends ChopperService {
     var client = ChopperClient(
       converter: BuiltValueConverter(serializer),
       errorConverter: BuiltValueConverter(serializer),
+      interceptors: [ThrowErrorResponseInterceptor()],
       baseUrl: Uri.parse(
           dotenv.get("SWITCH_GAME_API_URL", fallback: "https://fallback.com")),
     );
     return _$SwitchGameService(client);
   }
 
-  @Get(path: "/switch/games")
+  @Get(path: "/error")
   Future<Response<Iterable<SwitchGame>>> getGames();
 }

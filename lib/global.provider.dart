@@ -26,8 +26,7 @@ class GlobalProvider extends StatelessWidget {
             ),
             BlocProvider<SwitchGameListBloc>(
                 create: (_) =>
-                    SwitchGameListBloc(switchGameService: _switchGameService)
-                      ..fetch()),
+                    SwitchGameListBloc(switchGameService: _switchGameService)),
           ],
           child: child,
         ));

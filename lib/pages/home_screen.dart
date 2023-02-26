@@ -31,9 +31,6 @@ class HomeScreen extends StatelessWidget {
               ),
               BlocBuilder<SwitchGameListBloc, SwitchGameListStateType>(
                   builder: (context, state) {
-                if (state == null) {
-                  return const Text("Not fetch");
-                }
                 return FutureBuilder(
                   future: state,
                   builder: (context, snapshot) {
@@ -67,7 +64,7 @@ class HomeScreen extends StatelessWidget {
                       ));
                     }
                     if (snapshot.hasError) {
-                      return const Text("error");
+                      return Text(snapshot.error!.toString());
                     }
                     return const Text("pending");
                   },
