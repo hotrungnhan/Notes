@@ -1,16 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:notes/apis/switch_game.service.dart';
-
-@immutable
-class User extends Equatable {
-  const User(this.email, this.password);
-  final String email;
-  final String password;
-  @override
-  List<Object?> get props => [email, password];
-}
+import '../models/user.dart';
 
 abstract class AuthEvent {
   const AuthEvent();
@@ -62,10 +53,7 @@ class AuthErrorState extends AuthState {
 }
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  SwitchGameService switchGameService;
-
-  AuthBloc({required this.switchGameService})
-      : super(const UnauthenticatedState()) {
+  AuthBloc() : super(const UnauthenticatedState()) {
     on<LoginEvent>((event, emit) async {
       if (state is AuthPendingState) return;
       if (state is AuthenticatedState) return;

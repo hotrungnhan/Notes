@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:notes/viewmodels/game_list.dart';
 import 'apis/switch_game.service.dart';
 import 'viewmodels/auth.dart';
 
@@ -21,8 +22,12 @@ class GlobalProvider extends StatelessWidget {
         child: MultiBlocProvider(
           providers: [
             BlocProvider<AuthBloc>(
-              create: (_) => AuthBloc(switchGameService: _switchGameService),
+              create: (_) => AuthBloc(),
             ),
+            BlocProvider<SwitchGameListBloc>(
+                create: (_) =>
+                    SwitchGameListBloc(switchGameService: _switchGameService)
+                      ..fetch()),
           ],
           child: child,
         ));

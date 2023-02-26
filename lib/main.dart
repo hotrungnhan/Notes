@@ -6,6 +6,7 @@ import 'app.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'dart:io' show Platform;
+import 'dart:async';
 
 Future main() async {
   await dotenv.load(mergeWith: !kIsWeb ? Platform.environment : {});

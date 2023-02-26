@@ -27,13 +27,14 @@ class MyApp extends StatelessWidget {
                             name: DESKTOP),
                       ],
                       background: Container(color: const Color(0x00ffffff))),
+                  // showPerformanceOverlay: true,
                   localizationsDelegates: const <
                       LocalizationsDelegate<dynamic>>[
                     DefaultMaterialLocalizations.delegate,
                     DefaultWidgetsLocalizations.delegate,
                     DefaultCupertinoLocalizations.delegate,
                   ],
-                  title: 'Flutter Platform Widgets',
+                  title: 'Sample Application',
                 )));
   }
 }
