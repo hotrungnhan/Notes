@@ -10,6 +10,7 @@ import 'package:notes/apis/switch_game.service.dart';
 import 'package:notes/utils/http/bearer_authenticator.dart';
 import '../models/error.dart';
 import '../utils/http/interceptor.dart';
+import 'authenticate.service.dart';
 
 final _mainClientSerializers = (Serializers().toBuilder()
       ..addPlugin(StandardJsonPlugin())
@@ -30,8 +31,8 @@ final mainClient = ChopperClient(
     converter: BuiltValueConverter(_mainClientSerializers),
     errorConverter:
         BuiltValueConverter(_mainClientSerializers, errorType: DefaultError),
-    interceptors: [ThrowErrorResponseInterceptor()],
+    interceptors: [ThrowErrorInterceptor()],
     authenticator: BearerAuthenticator.from(MainClientJwtTokenProvider()),
     baseUrl: Uri.parse(
         dotenv.get("SWITCH_GAME_API_URL", fallback: "https://fallback.com")),
-    services: [SwitchGameService.create()]);
+    services: [SwitchGameService.create(), AuthenticateService.create()]);

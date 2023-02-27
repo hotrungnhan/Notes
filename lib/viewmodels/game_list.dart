@@ -22,6 +22,7 @@ class SwitchGameListBloc extends Cubit<SwitchGameListStateType> {
           }
           return value.body ?? <SwitchGame>[];
         }));
+  
   @override
   void onChange(change) {
     super.onChange(change);

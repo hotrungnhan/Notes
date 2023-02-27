@@ -30,7 +30,6 @@ abstract class AuthState extends Equatable {
 @immutable
 class AuthenticatedState extends AuthState {
   const AuthenticatedState({this.user});
-
   final User? user;
   @override
   List<Object?> get props => [user];

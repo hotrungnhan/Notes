@@ -14,7 +14,14 @@ class HttpException implements Exception {
   }
 }
 
-class ThrowErrorResponseInterceptor extends ResponseInterceptor {
+// class RevokedTokenInterceptor extends ResponseInterceptor {
+//   @override
+//   FutureOr<Response> onResponse(Response response) {
+//     return response;
+//   }
+// }
+
+class ThrowErrorInterceptor extends ResponseInterceptor {
   @override
   FutureOr<Response> onResponse(Response response) {
     if (response.error != null) {
